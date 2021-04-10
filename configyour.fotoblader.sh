@@ -14,12 +14,14 @@ fi
 not_applicable(){
 	$banner fotoblader n/a >> Makefile
 	echo "No 'FOTOBLADER' in imagelist"
+	echo "No 'FOTOBLADER' in imagelist" >>$LOG
 	echo "tag/upload.fotoblader: |tag" >> Makefile
 	echo "	touch tag/upload.fotoblader" >> Makefile
 	echo "tag/fotoblader: |tag" >> Makefile
 	echo "	touch tag/fotoblader" >> Makefile
 	echo "tag/clean.fotoblader: |tag" >> Makefile
 	echo "	touch tag/clean.fotoblader" >> Makefile
+	echo "Not applicable" >>$LOG
 	echo "Configyour.fotoblader finishing" >>$LOG
 	exit 0
 }
