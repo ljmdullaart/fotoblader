@@ -48,16 +48,23 @@ NOW=`date`
 mkdir -p www
 
 if [ $bladerhtml = FOTOBLADER ] ; then
-	echo "tag/fotoblader: www/index.html  html/fotoblader.htm |tag" >> Makefile
+	echo "tag/fotoblader: www/fotoblader.html www/stylesfb.css www/index.html  html/fotoblader.htm |tag" >> Makefile
 else
-	echo "tag/fotoblader: html/fotoblader.htm |tag" >> Makefile
+	echo "tag/fotoblader: www/fotoblader.html www/stylesfb.css html/fotoblader.htm |tag" >> Makefile
 fi
 
 
 echo "	touch tag/fotoblader" >> Makefile
 echo "html/fotoblader.htm: tag/photo /usr/local/bin/make_fotoblader photoheader" >> Makefile
 echo "	make_fotoblader" >> Makefile
+echo "www/fotoblader.html: tag/photo /usr/local/bin/make_fotoblader photoheader" >> Makefile
+echo "	make_fotoblader" >> Makefile
+echo "www/stylesfb.css: stylesfb.css" >> Makefile
+echo "	cp stylesfb.css www/stylesfb.css" >> Makefile
+echo "stylesfb.css:" >> Makefile
+echo "	touch stylesfb.css" >> Makefile
 if [ "$bladerhtml" =  'FOTOBLADER' ] ; then
+    echo "www/index.html: www/fotoblader.html" >> Makefile
     echo "	cp www/fotoblader.html www/index.html" >> Makefile
 fi
 

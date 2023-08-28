@@ -32,10 +32,7 @@ cat > www/fotoblader.html << EOF
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 EOF
-if [ -f stylesheet.css ] ; then
-	echo "<LINK HREF=\"stylesheet.css\" REL=\"stylesheet\" TYPE=\"text/css\">" >> www/fotoblader.html
-	cp stylesheet.css www
-fi
+echo "<LINK HREF=\"stylesfb.css\" REL=\"stylesheet\" TYPE=\"text/css\">" >> www/fotoblader.html
 cat >> www/fotoblader.html << EOF
 <title>$base</title>
 </head>
@@ -66,7 +63,7 @@ videofile(){
 	echo "<html>" > images/fullsize/$c.html
 	echo "<head>" >> images/fullsize/$c.html
 	echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" >> images/fullsize/$c.html
-	echo "<LINK HREF=\"stylesheet.css\" REL=\"stylesheet\" TYPE=\"text/css\">" >> images/fullsize/$c.html
+	echo "<LINK HREF=\"stylesfb.css\" REL=\"stylesheet\" TYPE=\"text/css\">" >> images/fullsize/$c.html
 	echo "<title>$b</title>" >> images/fullsize/$c.html
 	echo "</head>" >> images/fullsize/$c.html
 
@@ -77,8 +74,8 @@ videofile(){
 	echo "		</video>" >> images/fullsize/$c.html
 	echo "	</body>" >> images/fullsize/$c.html
 	echo "</html>" >> images/fullsize/$c.html
-	if [ -f stylesheet.css ] ; then
-		cp stylesheet.css images/fullsize
+	if [ -f stylesfb.css ] ; then
+		cp stylesfb.css images/fullsize
 	fi
 }
 
@@ -132,14 +129,14 @@ for i in ${!name[@]} ; do
 	fi
 	sleep 0.3
 	prev=$tokill
-	imgsize=$(imageinfo $f)
+	imgsize=$(imageinfo --geom $f)
 	xsize=${imgsize%x*}
 	ysize=${imgsize#*x}
 	cat > images/blader/$c.html << EOF
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<LINK HREF="stylesheet.css" REL="stylesheet" TYPE="text/css">
+<LINK HREF="stylesfb.css" REL="stylesheet" TYPE="text/css">
 <title>Untitled</title>
 </head>
 <body>
